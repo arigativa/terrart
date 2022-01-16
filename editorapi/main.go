@@ -27,8 +27,6 @@ func main() {
 
 	log.Printf("Gathering terraform state")
 
-	terraform.
-
 	tfState, err := terraform.Show(ctx)
 	if err != nil {
 		log.Fatalf("Failed to render Terraform state: %v", err)
@@ -62,7 +60,7 @@ func main() {
 	}
 }
 
-func jsonHandler(handler func (req *http.Request) (interface{}, error)) http.HandlerFunc {
+func jsonHandler(handler func(req *http.Request) (interface{}, error)) http.HandlerFunc {
 	return httpHandler(func(rw http.ResponseWriter, req *http.Request) error {
 		result, err := handler(req)
 
@@ -87,4 +85,3 @@ func httpHandler(handler func(rw http.ResponseWriter, req *http.Request) error) 
 		}
 	}
 }
-
