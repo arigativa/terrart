@@ -1,13 +1,18 @@
 import { State } from './State'
-import { ProviderSchemas } from './Providers'
+import { ProviderSchemas , SearchResult} from './Providers'
 
 export interface TerraformAPI {
   getState(): Promise<State>
   getProvidersSchemas(): Promise<ProviderSchemas>
+  searchComponents(query: string | undefined): Promise<SearchResult[]>
 }
 
 export class TerraformAPIClient implements TerraformAPI {
-  constructor(private endpoint: string) {}
+  private readonly endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = endpoint;
+  }
 
   async getProvidersSchemas(): Promise<ProviderSchemas> {
     const response = await fetch(this.endpoint + '/terraform/providers')
@@ -17,5 +22,10 @@ export class TerraformAPIClient implements TerraformAPI {
   async getState(): Promise<State> {
     const response = await fetch(this.endpoint + '/terraform/state')
     return response.json()
+  }
+
+  async searchComponents(query: string | undefined): Promise<SearchResult[]> {
+    const response = await fetch(this.endpoint + '/terraform/search?q=' + query);
+    return response.json();
   }
 }

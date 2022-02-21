@@ -1,4 +1,6 @@
 /*/*.iml
 /.idea/
-/test_terraform
 /.vscode
+/.envrc
+/example-project/.terraform/
+/test_terraform

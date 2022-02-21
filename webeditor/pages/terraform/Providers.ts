@@ -3,6 +3,14 @@ export interface ProviderSchemas {
   provider_schemas?: { [key: string]: ProviderSchema }
 }
 
+export type SearchResultType = "resource" | "datasource";
+
+export interface SearchResult {
+  type: SearchResultType;
+  name: string;
+  schema: Schema;
+}
+
 export interface ProviderSchema {
   provider?: Schema
   resource_schemas?: { [key: string]: Schema }
