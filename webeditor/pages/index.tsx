@@ -4,23 +4,24 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Modal from 'react-modal'
 
-import {useState} from "react";
+import { useState } from 'react'
 
 import ReactFlow, {
   removeElements,
   addEdge,
   MiniMap,
   Controls,
-  Background, OnLoadParams,
+  Background,
+  OnLoadParams,
 } from 'react-flow-renderer'
-import {TerraformAPIClient} from "./terraform/Api";
+import { TerraformAPIClient } from './terraform/Api'
 
-const TerraformClient = new TerraformAPIClient("http://localhost:8080")
+const TerraformClient = new TerraformAPIClient('http://localhost:8080')
 
 const onLoad = (reactFlowInstance: OnLoadParams) => {
-  console.log('flow loaded:', reactFlowInstance);
-  reactFlowInstance.fitView();
-};
+  console.log('flow loaded:', reactFlowInstance)
+  reactFlowInstance.fitView()
+}
 
 const initialElements = [
   {
@@ -45,30 +46,27 @@ const initialElements = [
       ),
     },
     position: { x: 100, y: 100 },
-  }
-];
+  },
+]
+
+const testVar = 'asdadsa'
 
 function SafeHydrate({ children }) {
-  return (
-    <div suppressHydrationWarning>
-      {typeof window === 'undefined' ? null : children}
-    </div>
-  )
+  return <div suppressHydrationWarning>{typeof window === 'undefined' ? null : children}</div>
 }
 
-
 const Home: NextPage = () => {
-  const [elements, setElements] = useState(initialElements);
+  const [elements, setElements] = useState(initialElements)
   const onElementsRemove = (elementsToRemove: object) =>
-    setElements((els) => removeElements(elementsToRemove, els));
-  const onConnect = (params) => setElements((els) => addEdge(params, els));
+    setElements(els => removeElements(elementsToRemove, els))
+  const onConnect = params => setElements(els => addEdge(params, els))
 
   TerraformClient.getProvidersSchemas().then(console.log)
   TerraformClient.getState().then(console.log)
 
   return (
     <SafeHydrate>
-      <div id='111' style={{height:'100vh'}}>
+      <div id="111" style={{ height: '100vh' }}>
         <ReactFlow
           elements={elements}
           onElementsRemove={onElementsRemove}
@@ -78,18 +76,18 @@ const Home: NextPage = () => {
           snapGrid={[15, 15]}
         >
           <MiniMap
-            nodeStrokeColor={(n) => {
-              if (n.style?.background) return n.style.background;
-              if (n.type === 'input') return '#0041d0';
-              if (n.type === 'output') return '#ff0072';
-              if (n.type === 'default') return '#1a192b';
+            nodeStrokeColor={n => {
+              if (n.style?.background) return n.style.background
+              if (n.type === 'input') return '#0041d0'
+              if (n.type === 'output') return '#ff0072'
+              if (n.type === 'default') return '#1a192b'
 
-              return '#eee';
+              return '#eee'
             }}
-            nodeColor={(n) => {
-              if (n.style?.background) return n.style.background;
+            nodeColor={n => {
+              if (n.style?.background) return n.style.background
 
-              return '#fff';
+              return '#fff'
             }}
             nodeBorderRadius={2}
           />

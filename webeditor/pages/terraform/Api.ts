@@ -1,6 +1,5 @@
-import {State} from "./State";
-import {ProviderSchemas} from "./Providers";
-
+import { State } from './State'
+import { ProviderSchemas } from './Providers'
 
 export interface TerraformAPI {
   getState(): Promise<State>
@@ -11,13 +10,12 @@ export class TerraformAPIClient implements TerraformAPI {
   constructor(private endpoint: string) {}
 
   async getProvidersSchemas(): Promise<ProviderSchemas> {
-    const response = await fetch(this.endpoint + '/terraform/providers');
-    return response.json();
+    const response = await fetch(this.endpoint + '/terraform/providers')
+    return response.json()
   }
 
   async getState(): Promise<State> {
-    const response = await fetch(this.endpoint + '/terraform/state');
-    return response.json();
+    const response = await fetch(this.endpoint + '/terraform/state')
+    return response.json()
   }
-
 }
