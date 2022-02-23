@@ -6,6 +6,8 @@ import Modal from 'react-modal'
 
 import { useState } from 'react'
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import ReactFlow, {
   removeElements,
   addEdge,
@@ -15,6 +17,7 @@ import ReactFlow, {
   OnLoadParams,
 } from 'react-flow-renderer'
 import { TerraformAPIClient } from './terraform/Api'
+import { ProvidersControl } from '../components/elements/ProvidersControl/ProvidersControl'
 
 const TerraformClient = new TerraformAPIClient('http://localhost:8080')
 
@@ -93,6 +96,8 @@ const Home: NextPage = () => {
           />
           <Controls />
           <Background color="#aaa" gap={16} />
+
+          <ProvidersControl />
         </ReactFlow>
         <Modal
           isOpen={true}
@@ -104,6 +109,7 @@ const Home: NextPage = () => {
               bottom: 'auto',
               marginRight: '-50%',
               transform: 'translate(-50%, -50%)',
+              zIndex: 1000,
             },
           }}
         >
