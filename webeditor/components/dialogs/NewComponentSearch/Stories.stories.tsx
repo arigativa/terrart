@@ -1,9 +1,9 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { within, userEvent } from '@storybook/testing-library';
-import {Search} from "./Search";
-import {TerraformAPIClient} from "../../../pages/terraform/Api";
-import {NewComponentDialog} from "./NewComponentDialog";
+import React from 'react'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { within, userEvent } from '@storybook/testing-library'
+import { Search } from './Search'
+import { TerraformAPIClient } from '../../../pages/terraform/Api'
+import { NewComponentDialog } from './NewComponentDialog'
 
 export default {
   title: 'New component search',
@@ -12,17 +12,17 @@ export default {
     // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'fullscreen',
   },
-} as ComponentMeta<typeof NewComponentDialog>;
+} as ComponentMeta<typeof NewComponentDialog>
 
-const TerraformClient = new TerraformAPIClient("http://localhost:8080");
+const TerraformClient = new TerraformAPIClient('http://localhost:8080')
 
-const Template: ComponentStory<typeof NewComponentDialog> =
-    (args) => <NewComponentDialog tfClient={TerraformClient} />;
-
+const Template: ComponentStory<typeof NewComponentDialog> = args => (
+  <NewComponentDialog tfClient={TerraformClient} />
+)
 
 export const Empty = Template.bind({
   // tfClient: TerraformClient,
-});
+})
 
 // export const TwoProvidersFolded = Template.bind({});
 

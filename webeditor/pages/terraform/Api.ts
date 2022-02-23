@@ -1,5 +1,5 @@
 import { State } from './State'
-import { ProviderSchemas , SearchResult} from './Providers'
+import { ProviderSchemas, SearchResult } from './Providers'
 
 export interface TerraformAPI {
   getState(): Promise<State>
@@ -8,10 +8,10 @@ export interface TerraformAPI {
 }
 
 export class TerraformAPIClient implements TerraformAPI {
-  private readonly endpoint: string;
+  private readonly endpoint: string
 
   constructor(endpoint: string) {
-    this.endpoint = endpoint;
+    this.endpoint = endpoint
   }
 
   async getProvidersSchemas(): Promise<ProviderSchemas> {
@@ -25,7 +25,7 @@ export class TerraformAPIClient implements TerraformAPI {
   }
 
   async searchComponents(query: string | undefined): Promise<SearchResult[]> {
-    const response = await fetch(this.endpoint + '/terraform/search?q=' + query);
-    return response.json();
+    const response = await fetch(this.endpoint + '/terraform/search?q=' + query)
+    return response.json()
   }
 }

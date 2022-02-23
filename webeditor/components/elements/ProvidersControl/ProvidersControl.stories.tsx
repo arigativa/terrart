@@ -1,7 +1,7 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { within, userEvent } from '@storybook/testing-library';
-import {ProvidersControl} from "./ProvidersControl";
+import React from 'react'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { within, userEvent } from '@storybook/testing-library'
+import { ProvidersControl } from './ProvidersControl'
 
 export default {
   title: 'Providers Control',
@@ -10,14 +10,13 @@ export default {
     // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'fullscreen',
   },
-} as ComponentMeta<typeof ProvidersControl>;
+} as ComponentMeta<typeof ProvidersControl>
 
-const Template: ComponentStory<typeof ProvidersControl> =
-    (args) => <ProvidersControl {...args} />;
+const Template: ComponentStory<typeof ProvidersControl> = args => <ProvidersControl {...args} />
 
-export const Empty = Template.bind({});
+export const Empty = Template.bind({})
 
-export const TwoProvidersFolded = Template.bind({});
+export const TwoProvidersFolded = Template.bind({})
 
 // export const LoggedIn = Template.bind({});
 
