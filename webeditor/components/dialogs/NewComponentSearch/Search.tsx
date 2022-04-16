@@ -3,6 +3,7 @@ import { TerraformAPI } from '../../../pages/terraform/Api'
 import { SearchResult } from '../../../pages/terraform/Providers'
 import ReactMarkdown from 'react-markdown'
 import { Form, InputGroup, ListGroup } from 'react-bootstrap'
+import './styles.scss'
 
 interface Props {
   tfClient: TerraformAPI
@@ -39,7 +40,7 @@ export class Search extends React.Component<Props, State> {
 
   render() {
     return (
-      <Form>
+      <Form className='new-component-search'>
         <InputGroup>
           <InputGroup.Text>@</InputGroup.Text>
           <Form.Control type={'text'} onInput={ev => this.search(ev.target.value)} />
