@@ -1,6 +1,13 @@
 Terrart - Visual Terraform IDE
 ===
 
+Quick run
+---------
+
+```
+docker-compose build
+docker-compose start
+```
 
 
 To look later

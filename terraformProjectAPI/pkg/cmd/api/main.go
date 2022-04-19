@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"flag"
 	"fmt"
+	arg "github.com/alexflint/go-arg"
 	state2 "github.com/arigativa/terrart/pkg/tfproject"
 	"github.com/rs/cors"
 	"log"
@@ -15,14 +15,18 @@ import (
 
 func main() {
 	var err error
-	var workDir, tfExecPath string
 
-	flag.StringVar(&workDir, "workDir", ".", "Directory where terraform configuration is located")
-	flag.StringVar(&tfExecPath, "tfExecPath", "", "Path to terraform executable (takes from PATH if not specified)")
-	flag.Parse()
+	var appArgs struct {
+		WorkDir     string `arg:"-d,--workDir,env:WORK_DIR" default:"." help:"Terraform project directory"`
+		APIBindHost string `arg:"-h,--bindHost,env:BIND_HOST" default:"0.0.0.0" help:"Host for HTTP API to bind to"`
+		APIBindPort int    `arg:"-p,--bindPort,env:BIND_PORT" default:"8080" help:"Port for HTTP API to bind to"`
+		TFExecPath  string `arg:"-e,--tfExecPath,env:TF_EXEC_PATH" help:"Path to terraform executable (takes from PATH if not specified)"`
+	}
 
-	if tfExecPath == "" {
-		tfExecPath, err = exec.LookPath("terraform")
+	arg.MustParse(&appArgs)
+
+	if appArgs.TFExecPath == "" {
+		appArgs.TFExecPath, err = exec.LookPath("terraform")
 		if err != nil {
 			log.Fatalf("Can't find terraform executable, specify it with option or make available at PATH: %v", err)
 		}
@@ -30,14 +34,14 @@ func main() {
 
 	ctx := context.TODO()
 
-	state, err := state2.InitAppState(workDir, tfExecPath)
+	state, err := state2.InitAppState(appArgs.WorkDir, appArgs.TFExecPath)
 	if err != nil {
 		log.Fatalf("Failed to initialize Terraform executable: %v", err)
 	}
 
 	state.Update(ctx)
 
-	addr := ":8080"
+	addr := fmt.Sprintf("%s:%d", appArgs.APIBindHost, appArgs.APIBindPort)
 	log.Printf("Starting HTTP server on %v", addr)
 
 	srv := &http.Server{

@@ -3,6 +3,7 @@ module github.com/arigativa/terrart
 go 1.17
 
 require (
+	github.com/alexflint/go-arg v1.4.3
 	github.com/hashicorp/terraform-config-inspect v0.0.0-20211115214459-90acf1ca460f
 	github.com/hashicorp/terraform-exec v0.16.0
 	github.com/hashicorp/terraform-json v0.13.0
@@ -11,6 +12,7 @@ require (
 
 require (
 	github.com/agext/levenshtein v1.2.2 // indirect
+	github.com/alexflint/go-scalar v1.1.0 // indirect
 	github.com/apparentlymart/go-textseg v1.0.0 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/google/go-cmp v0.5.7 // indirect

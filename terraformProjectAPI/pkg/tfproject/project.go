@@ -48,6 +48,10 @@ func InitAppState(workDir string, tfExecPath string) (TfProject, error) {
 	if err != nil {
 		return nil, err
 	}
+	err = terraform.Init(context.TODO())
+	if err != nil {
+		return nil, err
+	}
 	return &tfProjectImpl{
 		workDir: workDir,
 		tfh:     terraform,

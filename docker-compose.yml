@@ -1,0 +1,13 @@
+version: "3.1"
+
+services:
+  terraform-project-api:
+    build:
+      context: terraformProjectAPI/
+    image: terraform-project-api
+    environment:
+      WORK_DIR: /project
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./example-project:/project
