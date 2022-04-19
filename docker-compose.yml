@@ -7,6 +7,8 @@ services:
     image: terraform-project-api
     environment:
       WORK_DIR: /project
+      BIND_HOST: 0.0.0.0
+      BIND_PORT: 8080
     ports:
       - "8080:8080"
     volumes:

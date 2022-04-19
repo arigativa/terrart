@@ -23,6 +23,7 @@ RUN apt install terraform
 
 COPY --from=build /usr/local/bin/terraform-project-api /usr/local/bin/terraform-project-api
 
-RUN ls -lah /usr/local/bin/terraform-project-api
+# check that we have the app
+RUN which terraform-project-api
 
-CMD ["/usr/local/bin/terraform-project-api"]
+CMD ["terraform-project-api"]
