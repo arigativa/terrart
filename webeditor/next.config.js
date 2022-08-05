@@ -17,7 +17,7 @@ module.exports = {
     // SCSS
     newConfig.module.rules.push({
       test: /\.scss$/,
-      loaders: ['style-loader', 'css-loader', 'sass-loader'],
+      use: 'sass-loader',
     });
 
     return newConfig;
