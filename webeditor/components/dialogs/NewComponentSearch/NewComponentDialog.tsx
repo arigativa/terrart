@@ -1,5 +1,5 @@
-import { TerraformAPI } from '../../../pages/terraform/Api'
-import { SchemaBlock, SearchResult } from '../../../pages/terraform/Providers'
+import { TerraformAPI } from '../../../model/terraform/Api'
+import { SchemaBlock, SearchResult } from '../../../model/terraform/Providers'
 import React from 'react'
 import { Search } from './Search'
 import { CompParamsForm } from '../../elements/componentForm/CompParamsForm'

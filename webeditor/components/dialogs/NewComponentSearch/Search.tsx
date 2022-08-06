@@ -1,6 +1,5 @@
 import React from 'react'
-import { TerraformAPI } from '../../../pages/terraform/Api'
-import { SearchResult } from '../../../pages/terraform/Providers'
+import {SearchResult, TerraformAPI} from '../../../model/terraform/Client'
 import ReactMarkdown from 'react-markdown'
 import { Form, InputGroup, ListGroup } from 'react-bootstrap'
 import './styles.scss'

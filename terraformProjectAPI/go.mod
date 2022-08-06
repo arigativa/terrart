@@ -20,6 +20,8 @@ require (
 	github.com/hashicorp/hcl v0.0.0-20170504190234-a4b07c25de5f // indirect
 	github.com/hashicorp/hcl/v2 v2.0.0 // indirect
 	github.com/mitchellh/go-wordwrap v1.0.0 // indirect
+	github.com/tkrajina/go-reflector v0.5.5 // indirect
+	github.com/tkrajina/typescriptify-golang-structs v0.1.7 // indirect
 	github.com/zclconf/go-cty v1.10.0 // indirect
 	golang.org/x/text v0.3.5 // indirect
 )

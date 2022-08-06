@@ -1,9 +1,8 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { within, userEvent } from '@storybook/testing-library'
-import { Search } from './Search'
-import { TerraformAPIClient } from '../../../pages/terraform/Api'
+import {TerraformAPI, SearchResult} from '../../../model/terraform/Client'
 import { NewComponentDialog } from './NewComponentDialog'
+import {ProviderSchemas, State} from "../../../model/terraform/tfjson";
 
 export default {
   title: 'New component search',
@@ -14,11 +13,41 @@ export default {
   },
 } as ComponentMeta<typeof NewComponentDialog>
 
-const TerraformClient = new TerraformAPIClient('http://localhost:8080')
-
 const Template: ComponentStory<typeof NewComponentDialog> = args => (
-  <NewComponentDialog tfClient={TerraformClient} />
+  <NewComponentDialog tfClient={new TerraformClientMock()} />
 )
+
+class TerraformClientMock implements TerraformAPI {
+  getProvidersSchemas(): Promise<ProviderSchemas> {
+    return Promise.resolve({});
+  }
+
+  getState(): Promise<State> {
+    return Promise.resolve({});
+  }
+
+  getConfig(): Promise<object> {
+    return Promise.resolve({});
+  }
+
+  searchComponents(query: string | undefined): Promise<SearchResult[]> {
+    console.log("invoked");
+    let allOptions: SearchResult[] = [
+      {
+        name: "test_resource",
+        type: "resource",
+        schema: {
+          version: 0,
+          block: {
+            description: "This is a *test* resource",
+            description_kind: "markdown",
+          }
+        }
+      }
+    ]
+    return Promise.resolve(allOptions);
+  }
+}
 
 export const Empty = Template.bind({
   // tfClient: TerraformClient,

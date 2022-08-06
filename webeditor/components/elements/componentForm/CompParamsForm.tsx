@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SchemaAttribute, SchemaBlock } from '../../../pages/terraform/Providers'
+import { SchemaAttribute, SchemaBlock } from '../../../model/terraform/Providers'
 import ReactMarkdown from 'react-markdown'
 import { Button, Col, Form, FormControl, FormLabel, ListGroup, Row } from 'react-bootstrap'
 import { partition } from '../../../util/partition'
